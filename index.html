@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etch-a-Sketch</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>Etch-a-Sketch</h1>
+  <h2>Choose Grid Size: </h2>
+  <div id="slider">
+    <span>0</span>&nbsp;
+    <input id="slider" type="range" max="25" min="4" oninput="document.getElementById('sliderOutput').innerHTML = this.value" onchange="createGrid(this.value)">
+    <span id="sliderOutput">16</span>
+  </div>
+  
+  <div class="gridContainer">
+    <div id="grid"></div>
+  </div>
+  <div id="buttons">
+    <button id="blackBtn">Black</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+  
+  <script src="main.js" defer></script>
+</body>
+</html>
