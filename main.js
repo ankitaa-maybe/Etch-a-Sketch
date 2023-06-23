@@ -2,11 +2,12 @@ let grid = document.getElementById('grid');
 grid.className = 'grid';
 
 let gridWidthHeight = 40;
-let size;
 
 let clearButton = document.getElementById('clearBtn');
+let blackButton = document.getElementById('blackBtn');
 
 function createGrid(size) {
+  grid.innerHTML = "";
   for (let i=0; i<(size*size); i++) {
     let gridCol = document.createElement('gridCol');
     gridCol.classList.add('col');
@@ -25,7 +26,6 @@ function getRandomColor() {
   let randColor = randomNumber.padStart(6, 0);   
   return `#${randColor.toUpperCase()}`
 }
-console.log(getRandomColor());
 
 function fillBackgColor() {
   this.style.backgroundColor = getRandomColor();
@@ -43,7 +43,16 @@ function clearBoard() {
   }
 }
 
+function blackBoard() {
+  for (let i = 0; i < gridCell.length; i++) {
+    gridCell[i].style.backgroundColor = 'black';
+  }
+}
+
 createGrid(16);
 changeColor();
+
 clearButton.addEventListener('click', clearBoard);
-gridContainer.appendChild(clearButton);
+document.body.appendChild(clearButton);
+blackButton.addEventListener('click', blackBoard);
+document.body.appendChild(blackButton);

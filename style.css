@@ -22,3 +22,15 @@
   border: 1px solid black;
   box-sizing: border-box;
 }
+
+.text {
+  flex: auto;
+}
+body {
+  text-align: center;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+}
