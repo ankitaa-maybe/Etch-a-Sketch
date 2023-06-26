@@ -1,10 +1,16 @@
 let grid = document.getElementById('grid');
 grid.className = 'grid';
-
 let gridWidthHeight = 40;
-
-let clearButton = document.getElementById('clearBtn');
+// let color = 'black';
+let resetButton = document.getElementById('resetBtn');
 let blackButton = document.getElementById('blackBtn');
+let multiColor = document.getElementById('multiColor');
+let singleColor = document.getElementById('singleColor');
+
+resetButton.addEventListener('click', resetBoard);
+blackButton.addEventListener('click', blackBoard);
+multiColor.addEventListener('click', changeColor);
+singleColor.addEventListener('mouseover', solid);
 
 function createGrid(size) {
   grid.innerHTML = "";
@@ -18,13 +24,27 @@ function createGrid(size) {
     cell.style.width  = `${gridWidthHeight / size}rem`;
     cell.style.height = `${gridWidthHeight / size}rem`;
   })
+  // gridCell.innerHTML = changeColor();
+}
+
+function solid() {
+  resetBoard();
+  console.log("test");
+  gridCell.forEach(cell => {
+    cell.addEventListener('mouseover', chooseSingleColor);
+  })
+}
+
+function chooseSingleColor() {
+  let finall = document.querySelector('.singleInput').value;
+  this.style.backgroundColor = finall;
 }
 
 function getRandomColor() {
   let white = 0xFFFFFF;
   let randomNumber = Math.floor(Math.random() * white).toString(16);
   let randColor = randomNumber.padStart(6, 0);   
-  return `#${randColor.toUpperCase()}`
+  return `#${randColor.toUpperCase()}`;
 }
 
 function fillBackgColor() {
@@ -32,15 +52,22 @@ function fillBackgColor() {
 }
 
 function changeColor() {
+  resetBoard();
   gridCell.forEach(cell => {
     cell.addEventListener('mouseover', fillBackgColor);
   })
 }
 
-function clearBoard() {
+function resetBoard() {
   for (let i = 0; i < gridCell.length; i++) {
     gridCell[i].style.backgroundColor = 'white';
   }
+  gridCell.forEach(cell => {
+    cell.removeEventListener('mouseover', fillBackgColor);
+  })
+  gridCell.forEach(cell => {
+    cell.removeEventListener('mouseover', chooseSingleColor);
+  })
 }
 
 function blackBoard() {
@@ -50,9 +77,3 @@ function blackBoard() {
 }
 
 createGrid(16);
-changeColor();
-
-clearButton.addEventListener('click', clearBoard);
-document.body.appendChild(clearButton);
-blackButton.addEventListener('click', blackBoard);
-document.body.appendChild(blackButton);
