@@ -8,25 +8,37 @@
 </head>
 
 <body>
-
-  <h1>Etch-a-Sketch</h1>
-
-  <div id="slider">
-    <h2>Choose Grid Size: </h2>
-    <span>0</span>&nbsp;
-    <input id="slider" type="range" max="25" min="4" oninput="document.getElementById('sliderOutput').innerHTML = this.value" onchange="createGrid(this.value)">
-    <span id="sliderOutput">16</span>
-  </div>
-
-  <div class="gridContainer">
-    <div id="grid"></div>
-  </div>
-
-  <div id="buttons">
-    <button id="blackBtn">Black</button>
-    <button id="clearBtn">Clear</button>
-  </div>
   
+  <div class="project">
+
+    <div class="text">
+      <h1>Etch-a-Sketch</h1>
+      <div id="slider">
+        <h2>Choose Grid Size: </h2>
+        <span>0</span>&nbsp;
+        <input id="slider" type="range" max="100" min="4" oninput="document.getElementById('sliderOutput').innerHTML = this.value" onchange="createGrid(this.value)">
+        <span id="sliderOutput">16</span>
+      </div>
+  
+      <div class="btns">
+
+        <div class="singleColorInput">
+          <span id="singleColor">Solid Colour:</span>
+          <input type="color" class="singleInput" oninput="document.querySelector('.singleInput').innerHTML = this.value" onchange="solid()">
+        </div>
+        
+        <button id="multiColor">RGB</button>
+        <button id="blackBtn">Black Background</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+      
+    </div>
+    
+    <div class="gridContainer">
+      <div id="grid"></div>
+    </div>
+
+  </div>
   <script src="main.js" defer></script>
 </body>
 </html>
